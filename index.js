@@ -68,13 +68,17 @@ app.post("/add/teacher", async (req, res) => {
 });
 
 // Create a dynamic delete route to remove a teacher by their ID
-
+app.delete("/teachers/:id", async (req,res)=>{
+const res = await Teacher.findOneAndDelete({_id: req.params.id})
+res.json(res)
+})
 
 
 // Create a dynamic delete route to remove a rating by it's ID
-  
- 
-
+app.delete("/ratings/:id", async (req,res)=>{
+  const res = await Rating.findOneAndDelete({_id: req.params.id}) 
+    res.json(res)
+  })
 async function startServer() {
   await mongoose.connect(
     "mongodb+srv://SE12:CSH2026@cluster0.ytvmkmf.mongodb.net/?appName=Cluster0"
